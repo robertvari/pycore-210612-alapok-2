@@ -11,3 +11,10 @@ def my_timer(func):
 
         return result
     return wrapper
+
+
+def my_logger(func):
+    def wrapper(*args, **kwargs):
+        result = func(*args, **kwargs)
+        return result
+    return wrapper
