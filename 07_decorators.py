@@ -1,6 +1,15 @@
 import time, random
 
 
+def my_timer(func):
+
+    def wrapper():
+        start = time.time()
+        func()
+        print(f"Process time: {time.time() - start}")
+
+    return wrapper
+
 def worker1():
     print("Worker1 started...")
     time.sleep(random.randint(1, 10))
@@ -17,6 +26,5 @@ def worker3():
     print("Worker3 finished")
 
 
-start = time.time()
+
 worker1()
-print(f"Process time: {time.time() - start}")
