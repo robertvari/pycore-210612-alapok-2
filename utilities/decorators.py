@@ -1,5 +1,5 @@
-import time
-
+import time, logging
+from datetime import datetime
 
 def my_timer(func):
     def wrapper(*args, **kwargs):
@@ -14,7 +14,13 @@ def my_timer(func):
 
 
 def my_logger(func):
+    logging.basicConfig(filename=f"{func.__name__}.log", level=logging.INFO)
+
     def wrapper(*args, **kwargs):
+        print(f"my_logger started with {func.__name__}")
+
+        logging.info(f"{datetime.now()} Run with args: {args} and kwargs {kwargs}")
+
         result = func(*args, **kwargs)
         return result
     return wrapper
