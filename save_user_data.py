@@ -7,6 +7,11 @@ def main():
 
 
 def get_user_data():
+    """
+    Gets data from user.
+    :return: str
+    """
+
     name = input("Name:")
     age = input("Age:")
     email = input("Email:")
@@ -15,6 +20,12 @@ def get_user_data():
 
 
 def save_data(user_data):
+    """
+    Saves user data into a .txt file
+    :param user_data: str
+    :return: None
+    """
+
     with open("user_data.txt", "w") as f:
         f.write(user_data)
 
