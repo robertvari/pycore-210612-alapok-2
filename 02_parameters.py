@@ -16,11 +16,19 @@ def user_data2(name, age=10, email="peter@gmail.com"):
     print(f"Age: {age}")
     print(f"Email: {email}")
 
-user_data2("Robert", 42, "robert@gmail.com")
 
-# keyword arguments
-user_data2(
-    email="robert@gmail.com",
+# random length params
+def rand_number_of_arguments(*args):
+    for i in args:
+        print(i)
+
+
+# random length keyword params
+def rand_number_of_keyword_args(**kwargs):
+    print(kwargs)
+
+rand_number_of_keyword_args(
     name="Robert",
-    age=42
+    age=42,
+    email="robert@gmail.com"
 )
