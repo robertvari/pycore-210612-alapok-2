@@ -2,6 +2,7 @@ import time, random
 
 
 def my_timer(func):
+    print("my_timer started...")
 
     def wrapper():
         start = time.time()
