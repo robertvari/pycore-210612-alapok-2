@@ -1,6 +1,4 @@
 def main():
-    print("main called")
-
     # get data from user
     user_data = get_user_data()
 
@@ -9,13 +7,18 @@ def main():
 
 
 def get_user_data():
-    print("get_user_data called")
+    name = input("Name:")
+    age = input("Age:")
+    email = input("Email:")
 
-    return "Robert\n42\nrobert@gmail.com"
+    return f"Name:{name}\nAge:{age}\nEmail:{email}"
 
 
 def save_data(user_data):
-    print("save_data called", user_data)
+    with open("user_data.txt", "w") as f:
+        f.write(user_data)
+
+    print("Data saved!")
 
 
 main()
