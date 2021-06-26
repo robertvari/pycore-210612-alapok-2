@@ -1,31 +1,13 @@
 import time, random
+from utilities.decorators import my_timer
 
 
-def my_timer(func):
-    print("my_timer started...")
-
-    def wrapper():
-        start = time.time()
-        func()
-        print(f"Process time: {time.time() - start}")
-
-    return wrapper
-
-def worker1():
+@my_timer
+def worker1(name):
     print("Worker1 started...")
     time.sleep(random.randint(1, 10))
     print("Worker1 finished")
 
-def worker2():
-    print("Worker2 started...")
-    time.sleep(random.randint(1, 10))
-    print("Worker2 finished")
+    return 42
 
-def worker3():
-    print("Worker3 started...")
-    time.sleep(random.randint(1, 10))
-    print("Worker3 finished")
-
-
-
-worker1()
+result = worker1("Robert")
