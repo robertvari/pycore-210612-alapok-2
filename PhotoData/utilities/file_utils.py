@@ -1,5 +1,7 @@
 import os
 
+DEBUG = True
+
 
 def get_files(root_folder: str, files=[], ext=None) -> list:
     """
@@ -44,7 +46,11 @@ def get_root_folder() -> str:
     :return: str
     """
 
-    user_input = input("Where are your photos?")
+    if not DEBUG:
+        user_input = input("Where are your photos?")
+    else:
+        user_input = r"C:\Work\_PythonSuli\pycore-210612\photos"
+
     assert os.path.exists(user_input), "Folder does not exists."
 
     return user_input

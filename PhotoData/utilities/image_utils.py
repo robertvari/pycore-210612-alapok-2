@@ -6,15 +6,10 @@ thumb_size = 300
 watermark_text = "Python Suli"
 
 
-def process_image_worker():
+def process_image_worker(thumbnail_dir):
     while not job_list.empty():
         image_path = job_list.get()
         print(f"Resizing image: {image_path}")
-
-        image_folder = os.path.dirname(image_path)
-        thumbnail_dir = os.path.join(image_folder, "_thumbnails")
-        if not os.path.exists(thumbnail_dir):
-            os.makedirs(thumbnail_dir)
 
         # open image
         img = Image.open(image_path)
@@ -23,7 +18,7 @@ def process_image_worker():
         img.thumbnail((thumb_size, thumb_size))
 
         # draw on image
-        font = ImageFont.truetype("arial.ttf", 100)
+        font = ImageFont.truetype("arial.ttf", 50)
         draw = ImageDraw.Draw(img)
         draw.text((0, 0), watermark_text, fill=(255, 0, 0), font=font)
 
@@ -34,10 +29,15 @@ def process_image_worker():
 
 
 def start_processing(image_list, max_threads=6):
+    image_folder = os.path.dirname(image_list[0])
+    thumbnail_dir = os.path.join(image_folder, "_thumbnails")
+    if not os.path.exists(thumbnail_dir):
+        os.makedirs(thumbnail_dir)
+
     [
        job_list.put(i) for i in image_list
     ]
 
     for _ in range(max_threads):
-        t = threading.Thread(target=process_image_worker)
+        t = threading.Thread(target=process_image_worker, args=[thumbnail_dir])
         t.start()
