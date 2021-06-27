@@ -1,8 +1,6 @@
 import time, random, threading
 
 
-file_list = [....]
-
 def worker1(worker_name):
     print(f"{worker_name} started")
     time.sleep(random.randint(10, 30))
