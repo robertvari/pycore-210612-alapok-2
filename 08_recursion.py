@@ -11,6 +11,6 @@ def call_myself(i):
         call_myself(i+1)
 
 
-files = get_files(photo_folder)
+files = get_files(photo_folder, ext=".jpg")
 for i in files:
     print(i)
