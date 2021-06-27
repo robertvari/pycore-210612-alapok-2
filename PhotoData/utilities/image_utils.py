@@ -19,7 +19,7 @@ def process_image_worker():
         img = Image.open(image_path)
 
         # resize image
-        img.thmbnail(thumb_size, thumb_size)
+        img.thumbnail((thumb_size, thumb_size))
 
         # save thumbnail
         img.save(os.path.join(thumbnail_dir, os.path.basename(image_path)))
