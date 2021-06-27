@@ -36,3 +36,15 @@ def get_files(root_folder: str, files=[], ext=None) -> list:
             get_files(folder, files, ext)
 
     return files
+
+
+def get_root_folder() -> str:
+    """
+    Asks user for the root folder then validates it.
+    :return: str
+    """
+
+    user_input = input("Where are your photos?")
+    assert os.path.exists(user_input), "Folder does not exists."
+
+    return user_input
