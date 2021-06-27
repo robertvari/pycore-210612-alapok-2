@@ -1,6 +1,9 @@
 import time, random, threading, queue
 from utilities.file_utils import get_files
 
+MAX_THREADS = 8
+
+
 job_list = queue.Queue()
 [
     job_list.put(i) for i in get_files(r"C:\Work\_PythonSuli\pycore-210612\photos", ext=".jpg")
@@ -19,6 +22,6 @@ def worker():
         job_list.task_done()
 
 
-for _ in range(8):
+for _ in range(MAX_THREADS):
     t = threading.Thread(target=worker)
     t.start()
