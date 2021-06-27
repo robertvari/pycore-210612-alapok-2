@@ -11,7 +11,7 @@ def get_files(root_folder: str, ext=".jpg") -> list:
     assert os.path.exists(root_folder), "Folder does not exist."
 
     files = [
-        i for i in os.listdir(root_folder)
+        os.path.join(root_folder, i) for i in os.listdir(root_folder)
         if os.path.splitext(i)[1].lower() == ext.lower()
     ]
 

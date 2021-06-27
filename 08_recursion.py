@@ -9,3 +9,8 @@ def call_myself(i):
     else:
         print(f"I called myself {i} times.")
         call_myself(i+1)
+
+
+files = get_files(photo_folder)
+for i in files:
+    print(i)
