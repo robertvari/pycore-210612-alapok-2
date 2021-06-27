@@ -1,7 +1,7 @@
 import os
 
 
-def get_files(root_folder: str, ext=None) -> list:
+def get_files(root_folder: str, files=[], ext=None) -> list:
     """
     Lists a folder and returns files.
     :param root_folder: str
@@ -27,10 +27,15 @@ def get_files(root_folder: str, ext=None) -> list:
             if os.path.splitext(i)[1].lower() == ext.lower()
         ]
 
-    subfolders = [i for i in folder_content if os.path.isdir(os.path.join(root_folder, i))]
+    files += all_files
 
-    pass
-    return []
+    subfolders = [os.path.join(root_folder, i) for i in folder_content if os.path.isdir(os.path.join(root_folder, i))]
+
+    if subfolders:
+        for folder in subfolders:
+            get_files(folder, files, ext)
+
+    return files
 
 
 if __name__ == '__main__':
