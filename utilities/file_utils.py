@@ -31,6 +31,5 @@ def get_files(root_folder: str, ext=None) -> list:
 
 
 if __name__ == '__main__':
-    #folder_path = r"C:\Work\_PythonSuli\pycore-210612\photos"
-    # result = get_files(folder_path)
-    print(os.path.splitext(r"C:\Work\_PythonSuli\pycore-210612\photos\IMG_1069.JPG"))
+    folder_path = r"C:\Work\_PythonSuli\pycore-210612\photos"
+    result = get_files(folder_path, ext=".xlsx")
