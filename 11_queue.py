@@ -8,11 +8,17 @@ job_list = queue.Queue()
 
 
 def worker():
+    worker_name = f"Worker-{threading.currentThread().name}"
     while not job_list.empty():
         next_file = job_list.get()
 
-        print(f"Working on: {next_file}")
+        print(f"{worker_name} working on: {next_file}")
         time.sleep(random.randint(1, 10))
-        print("Worker finished")
+        print(f"{worker_name} worker finished")
 
         job_list.task_done()
+
+
+for _ in range(8):
+    t = threading.Thread(target=worker)
+    t.start()
