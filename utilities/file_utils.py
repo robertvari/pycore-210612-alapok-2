@@ -9,6 +9,8 @@ def get_files(root_folder: str, ext=None) -> list:
     :return: string list of file paths
     """
 
+    assert os.path.exists(root_folder), "Folder does not exist."
+
     # collect all content (files/folders)
     folder_content = os.listdir(root_folder)
 
@@ -25,11 +27,12 @@ def get_files(root_folder: str, ext=None) -> list:
             if os.path.splitext(i)[1].lower() == ext.lower()
         ]
 
-    assert os.path.exists(root_folder), "Folder does not exist."
+    subfolders = [i for i in folder_content if os.path.isdir(os.path.join(root_folder, i))]
 
+    pass
     return []
 
 
 if __name__ == '__main__':
     folder_path = r"C:\Work\_PythonSuli\pycore-210612\photos"
-    result = get_files(folder_path, ext=".xlsx")
+    result = get_files(folder_path)
